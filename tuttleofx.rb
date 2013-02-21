@@ -3,10 +3,8 @@ require 'formula'
 class Tuttleofx < Formula
   homepage 'https://sites.google.com/site/tuttleofx/'
 #  url 'https://github.com/tuttleofx/TuttleOFX.git', :tag => 'v0.6.0'
-#  url 'https://github.com/tuttleofx/TuttleOFX.git', :branch => 'dev_macosxbuild'
-  url 'https://github.com/cbenhagen/TuttleOFX.git', :branch => 'osxbuild'
-  version '0.6.0'
-#  sha1 'a6a2a894984747808d7aa41531f53e4f3f9f480c'
+  url 'https://github.com/tuttleofx/TuttleOFX.git', :branch => 'dev_macosxbuild'
+  version 'dev_macosxbuild'
 
   depends_on :x11
   depends_on 'scons' => :build
