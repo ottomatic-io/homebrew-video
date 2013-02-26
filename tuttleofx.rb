@@ -33,8 +33,7 @@ class Tuttleofx < Formula
 
   def install
     system "cp tools/sconf/macos_homebrew.sconf host.sconf"
-    # TODO: find a better way for -j8
-    system "scons -j8 -i"
+    system "scons -k"
     system "mv dist/`hostname`/gcc-`gcc -dumpversion`/production/ install"
     prefix.install Dir['install/*']
   end
