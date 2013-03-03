@@ -7,6 +7,7 @@ class Tuttleofx < Formula
 
   devel do
     url 'https://github.com/tuttleofx/TuttleOFX.git', :branch => 'develop'
+    version 'develop'
   end
 
   depends_on :x11
