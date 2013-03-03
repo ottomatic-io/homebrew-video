@@ -2,9 +2,12 @@ require 'formula'
 
 class Tuttleofx < Formula
   homepage 'https://sites.google.com/site/tuttleofx/'
-#  url 'https://github.com/tuttleofx/TuttleOFX.git', :tag => 'v0.6.0'
-  url 'https://github.com/tuttleofx/TuttleOFX.git', :branch => 'dev_macosxbuild'
-  version 'dev_macosxbuild'
+  url 'https://github.com/tuttleofx/TuttleOFX.git', :tag => 'v0.7.0'
+  version '0.7.0'
+
+  devel do
+    url 'https://github.com/tuttleofx/TuttleOFX.git', :branch => 'develop'
+  end
 
   depends_on :x11
   depends_on 'scons' => :build
