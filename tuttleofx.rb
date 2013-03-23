@@ -13,6 +13,7 @@ class Tuttleofx < Formula
   depends_on :x11
   depends_on 'scons' => :build
   depends_on 'swig' => :build
+  depends_on 'python'
   depends_on 'boost'
   depends_on 'jpeg'
   depends_on 'openexr'
