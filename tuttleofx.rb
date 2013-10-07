@@ -31,11 +31,6 @@ class Tuttleofx < Formula
   depends_on 'libraw'
   depends_on 'ctl'
 
-  def patches
-    # use gl
-    DATA
-  end
-
   def install
     system "cp tools/sconf/macos_homebrew.sconf host.sconf"
     system "scons -k"
@@ -55,16 +50,3 @@ class Tuttleofx < Formula
     system "sam"
   end
 end
-__END__
-diff --git a/tools/sconsProject/autoconf/gl.py b/tools/sconsProject/autoconf/gl.py
-index 59da2a6..4294c4f 100755
---- a/tools/sconsProject/autoconf/gl.py
-+++ b/tools/sconsProject/autoconf/gl.py
-@@ -2,8 +2,6 @@ from _external import *
- 
- if windows:
-     gl = LibWithHeaderChecker('opengl32', ['windows.h','GL/gl.h'], 'c', name='gl')
--elif macos:
--    gl = LibWithHeaderChecker('OpenGL', ['AGL/gl.h'], 'c', name='gl')
- else : # unix
-     gl = LibWithHeaderChecker('GL', ['GL/gl.h'], 'c', name='gl')
