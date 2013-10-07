@@ -17,7 +17,7 @@ class Bmx < Formula
     # #2 For automake >= 1.12
     DATA
   end
- 
+
   def install
     system "echo '#define BMX_SCM_VERSION \"v#{version}\"' > bmx_scm_version.h"
     system "./autogen.sh"
