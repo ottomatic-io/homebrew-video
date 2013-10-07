@@ -3,7 +3,6 @@ require 'formula'
 class Tuttleofx < Formula
   homepage 'https://sites.google.com/site/tuttleofx/'
   url 'https://github.com/tuttleofx/TuttleOFX.git', :tag => 'v0.7.0'
-  version '0.7.0'
 
   devel do
     url 'https://github.com/tuttleofx/TuttleOFX.git', :branch => 'develop'
@@ -11,9 +10,9 @@ class Tuttleofx < Formula
   end
 
   depends_on :x11
+  depends_on :python
   depends_on 'scons' => :build
   depends_on 'swig' => :build
-  depends_on 'python'
   depends_on 'boost'
   depends_on 'jpeg'
   depends_on 'openexr'
