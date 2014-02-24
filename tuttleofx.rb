@@ -25,7 +25,7 @@ class Tuttleofx < Formula
   depends_on 'freeglut'
   depends_on 'glew'
   depends_on 'little-cms2'
-  depends_on 'openimageio'
+  depends_on 'homebrew/science/openimageio'
   depends_on 'jpeg-turbo'
   depends_on 'libraw'
   depends_on 'ctl'
