@@ -2,7 +2,8 @@ require 'formula'
 
 class Tuttleofx < Formula
   homepage 'https://sites.google.com/site/tuttleofx/'
-  url 'https://github.com/tuttleofx/TuttleOFX.git', :tag => 'v0.7.0'
+  url 'https://github.com/tuttleofx/TuttleOFX.git', :tag => 'v0.8'
+  version '0.8.0'
 
   devel do
     url 'https://github.com/tuttleofx/TuttleOFX.git', :branch => 'develop'
