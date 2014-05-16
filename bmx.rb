@@ -1,16 +1,16 @@
-require 'formula'
+require "formula"
 
 class Bmx < Formula
-  homepage 'http://sourceforge.net/p/bmxlib/home/Home/'
-  url 'git://git.code.sf.net/p/bmxlib/bmx', :tag => 'v0.1.2'
+  homepage "http://sourceforge.net/p/bmxlib/home/Home/"
+  url "git://git.code.sf.net/p/bmxlib/bmx", :tag => "v0.1.2"
 
-  depends_on 'automake' => :build
-  depends_on 'autoconf' => :build
-  depends_on 'pkg-config' => :build
-  depends_on 'libtool' => :build
-  depends_on 'uriparser'
-  depends_on 'libmxf'
-  depends_on 'libmxfpp'
+  depends_on "automake" => :build
+  depends_on "autoconf" => :build
+  depends_on "pkg-config" => :build
+  depends_on "libtool" => :build
+  depends_on "uriparser"
+  depends_on "libmxf"
+  depends_on "libmxfpp"
 
   def patches
     # #1 Fix order in autogen.sh

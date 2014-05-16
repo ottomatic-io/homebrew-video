@@ -1,16 +1,16 @@
-require 'formula'
+require "formula"
 
 class Libmxf < Formula
-  homepage 'http://sourceforge.net/p/bmxlib/home/Home/'
-  url 'git://git.code.sf.net/p/bmxlib/libmxf', :tag => 'v1.0.3'
+  homepage "http://sourceforge.net/p/bmxlib/home/Home/"
+  url "git://git.code.sf.net/p/bmxlib/libmxf", :tag => "v1.0.3"
 
   # does not build with superenv
   env :std
 
-  depends_on 'automake' => :build
-  depends_on 'autoconf' => :build
-  depends_on 'pkg-config' => :build
-  depends_on 'libtool' => :build
+  depends_on "automake" => :build
+  depends_on "autoconf" => :build
+  depends_on "pkg-config" => :build
+  depends_on "libtool" => :build
 
   def patches
     # #1 Fix order in autogen.sh
