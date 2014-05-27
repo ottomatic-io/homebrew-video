@@ -7,8 +7,8 @@ class Tuttleofxctl < Formula
   url "https://github.com/tuttleofx/CTL.git", :branch => "tuttle_develop"
   version "master"
 
-  depends_on 'cmake' => :build
-  depends_on 'ilmbase'
+  depends_on "cmake" => :build
+  depends_on "ilmbase"
 
   def install
     system "cmake ."
