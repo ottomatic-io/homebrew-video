@@ -17,7 +17,7 @@ class Tuttleofx < Formula
   depends_on "homebrew/python/numpy"
   depends_on "scons" => :build
   depends_on "swig" => :build
-  depends_on "boost"
+  depends_on "boost" => "with-python"
   depends_on "jpeg"
   depends_on "openexr"
   depends_on "ffmpeg"
@@ -33,7 +33,7 @@ class Tuttleofx < Formula
   depends_on "jpeg-turbo"
   depends_on "libraw"
   depends_on "tuttleofxctl"
-  depends_on "tuttleofxseexpr"
+  depends_on "seexpr"
 
   def install
     system "cp tools/sconf/macos_homebrew.sconf host.sconf"
@@ -48,9 +48,17 @@ class Tuttleofx < Formula
     freetype = Formula["freetype"].prefix
     incdir_freetype = "#{freetype}/include/freetype2"
     puts "incdir_freetype #{incdir_freetype}"
-
-    system "scons INSTALLPATH='#{Dir.pwd}/install' install=1 -j4 incdir_python_numpy='#{incdir_python_numpy}' incdir_freetype='#{incdir_freetype}'"
-
+    
+    args = %W[
+      INSTALLPATH='#{Dir.pwd}/install'
+      install=1
+      -j #{ENV.make_jobs}
+      incdir_python_numpy='#{incdir_python_numpy}'
+      incdir_freetype='#{incdir_freetype}'
+    ]
+    
+    scons *args
+    
     prefix.install Dir["install/*"]
   end
 
