@@ -2,8 +2,10 @@ require "formula"
 
 class Tuttleofx < Formula
   homepage "https://sites.google.com/site/tuttleofx/"
-  url "https://github.com/tuttleofx/TuttleOFX.git", :tag => "v0.8"
-  version "0.8.0"
+  url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
+  # We currently use the develop version, the v0.9 will be the next release officially supporting homebrew.
+  # :tag => "v0.9"
+  version "0.9.0-dev"
 
   devel do
     url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
@@ -12,6 +14,7 @@ class Tuttleofx < Formula
 
   depends_on :x11
   depends_on :python
+  depends_on "homebrew/python/numpy"
   depends_on "scons" => :build
   depends_on "swig" => :build
   depends_on "boost"
@@ -29,24 +32,37 @@ class Tuttleofx < Formula
   depends_on "homebrew/science/openimageio"
   depends_on "jpeg-turbo"
   depends_on "libraw"
-  depends_on "ctl"
+  depends_on "tuttleofxctl"
+  depends_on "tuttleofxseexpr"
 
   def install
     system "cp tools/sconf/macos_homebrew.sconf host.sconf"
-    system "scons -k"
-    system "mv dist/`hostname`/gcc-`gcc -dumpversion`/production/ install"
-    prefix.install Dir['install/*']
+
+    python_version = `python-config --libs`.match('-lpython(\d+\.\d+)').captures.at(0)
+    puts "python_version #{python_version}"
+
+    numpy = Formula["numpy"].prefix
+    incdir_python_numpy="#{numpy}/lib/python#{python_version}/site-packages/numpy/core/include"
+    puts "incdir_python_numpy #{incdir_python_numpy}"
+
+    freetype = Formula["freetype"].prefix
+    incdir_freetype = "#{freetype}/include/freetype2"
+    puts "incdir_freetype #{incdir_freetype}"
+
+    system "scons INSTALLPATH='#{Dir.pwd}/install' install=1 -j4 incdir_python_numpy='#{incdir_python_numpy}' incdir_freetype='#{incdir_freetype}'"
+
+    prefix.install Dir["install/*"]
   end
 
   def caveats
     <<-EOS.undent
-      You need to set OFX_PLUGIN_PATH and PATH by:
-        export OFX_PLUGIN_PATH=#{prefix}/plugin && export PATH=$OFX_PLUGIN_PATH/bin:$PATH
+      You need to set the path to TuttleOFX plugins by:
+        export OFX_PLUGIN_PATH=#{prefix}/plugin
     EOS
   end
 
   def test
     system "export OFX_PLUGIN_PATH=#{prefix}/plugin && export PATH=$OFX_PLUGIN_PATH/bin:$PATH"
-    system "sam"
+    system "sam do -n"
   end
 end
