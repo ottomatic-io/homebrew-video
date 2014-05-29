@@ -50,11 +50,11 @@ class Tuttleofx < Formula
     puts "incdir_freetype #{incdir_freetype}"
     
     args = %W[
-      INSTALLPATH='#{Dir.pwd}/install'
+      INSTALLPATH=#{Dir.pwd}/install
       install=1
       -j #{ENV.make_jobs}
-      incdir_python_numpy='#{incdir_python_numpy}'
-      incdir_freetype='#{incdir_freetype}'
+      incdir_python_numpy=#{incdir_python_numpy}
+      incdir_freetype=#{incdir_freetype}
     ]
     
     scons *args
