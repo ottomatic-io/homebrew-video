@@ -29,8 +29,7 @@ class Tuttleofx < Formula
   depends_on "freeglut"
   depends_on "glew"
   depends_on "little-cms2"
-  #depends_on "homebrew/science/openimageio"
-  depends_on "https://github.com/cchampet/homebrew-science/raw/openimageio_1.4.7/openimageio.rb"
+  depends_on "homebrew/science/openimageio"
   depends_on "jpeg-turbo"
   depends_on "libraw"
   depends_on "tuttleofxctl"
@@ -49,7 +48,7 @@ class Tuttleofx < Formula
     freetype = Formula["freetype"].prefix
     incdir_freetype = "#{freetype}/include/freetype2"
     puts "incdir_freetype #{incdir_freetype}"
-    
+
     args = %W[
       INSTALLPATH=#{Dir.pwd}/install
       install=1
@@ -57,9 +56,9 @@ class Tuttleofx < Formula
       incdir_python_numpy=#{incdir_python_numpy}
       incdir_freetype=#{incdir_freetype}
     ]
-    
+
     scons *args
-    
+
     prefix.install Dir["install/*"]
   end
 
