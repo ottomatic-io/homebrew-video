@@ -70,7 +70,8 @@ class Tuttleofx < Formula
   end
 
   def test
-    system "export OFX_PLUGIN_PATH=#{prefix}/plugin && export PATH=$OFX_PLUGIN_PATH/bin:$PATH"
-    system "sam do -n"
+    ENV.prepend_create_path "OFX_PLUGIN_PATH",  "#{prefix}/plugin"
+    ENV.prepend_path "PATH", ENV["OFX_PLUGIN_PATH"]
+    system "sam", "do", "-n"
   end
 end
