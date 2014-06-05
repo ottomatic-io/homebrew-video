@@ -32,7 +32,7 @@ class Tuttleofx < Formula
   depends_on "homebrew/science/openimageio"
   depends_on "jpeg-turbo"
   depends_on "libraw"
-  depends_on "tuttleofxctl"
+  depends_on "ctl"
   depends_on "seexpr"
 
   def install
