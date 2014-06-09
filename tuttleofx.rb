@@ -12,28 +12,28 @@ class Tuttleofx < Formula
     version "develop"
   end
 
-  depends_on :x11
   depends_on :python
-  depends_on "homebrew/python/numpy"
+  depends_on :x11
   depends_on "scons" => :build
   depends_on "swig" => :build
   depends_on "boost" => "with-python"
-  depends_on "jpeg"
-  depends_on "openexr"
-  depends_on "ffmpeg"
-  depends_on "imagemagick"
-  depends_on "openjpeg"
-  depends_on "libcaca"
-  depends_on "fontconfig"
-  depends_on "freetype"
-  depends_on "freeglut"
-  depends_on "glew"
-  depends_on "little-cms2"
-  depends_on "homebrew/science/openimageio"
-  depends_on "jpeg-turbo"
-  depends_on "libraw"
   depends_on "ctl"
+  depends_on "ffmpeg"
+  depends_on "fontconfig"
+  depends_on "freeglut"
+  depends_on "freetype"
+  depends_on "glew"
+  depends_on "imagemagick"
+  depends_on "jpeg"
+  depends_on "jpeg-turbo"
+  depends_on "libcaca"
+  depends_on "libraw"
+  depends_on "little-cms2"
+  depends_on "openexr"
+  depends_on "openjpeg"
   depends_on "seexpr"
+  depends_on "homebrew/python/numpy"
+  depends_on "homebrew/science/openimageio"
 
   def install
     system "cp tools/sconf/macos_homebrew.sconf host.sconf"
