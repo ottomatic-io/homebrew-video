@@ -1,7 +1,7 @@
 require "formula"
 
 class Tuttleofx < Formula
-  homepage "https://sites.google.com/site/tuttleofx/"
+  homepage "http://www.tuttleofx.org"
   url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
   # We currently use the develop version, the v0.9 will be the next release officially supporting homebrew.
   # :tag => "v0.9"
