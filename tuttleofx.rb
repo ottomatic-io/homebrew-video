@@ -41,8 +41,8 @@ class Tuttleofx < Formula
     python_version = "python" + `python-config --libs`.match('-lpython(\d+\.\d+)').captures.at(0)
     python_prefix = `python-config --prefix`.chomp
 
-    incdir_python =  "#{python_prefix}/include/#{python_version}"
-    incdir_python_numpy="#{Formula["numpy"].prefix}/lib/#{python_version}/site-packages/numpy/core/include"
+    incdir_python = "#{python_prefix}/include/#{python_version}"
+    incdir_python_numpy = "#{Formula["numpy"].prefix}/lib/#{python_version}/site-packages/numpy/core/include"
     incdir_freetype = "#{Formula["freetype"].opt_include}/freetype2"
 
     args = %W[
@@ -67,7 +67,7 @@ class Tuttleofx < Formula
   end
 
   def test
-    ENV.prepend_create_path "OFX_PLUGIN_PATH",  "#{prefix}/plugin"
+    ENV.prepend_create_path "OFX_PLUGIN_PATH", "#{prefix}/plugin"
     ENV.prepend_path "PATH", ENV["OFX_PLUGIN_PATH"]
     system "sam", "do", "-n"
   end
