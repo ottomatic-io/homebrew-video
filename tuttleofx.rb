@@ -36,7 +36,7 @@ class Tuttleofx < Formula
   depends_on "homebrew/science/openimageio"
 
   def install
-    system "cp tools/sconf/macos_homebrew.sconf host.sconf"
+    cp "tools/sconf/macos_homebrew.sconf", "host.sconf"
 
     python_version = "python" + `python-config --libs`.match('-lpython(\d+\.\d+)').captures.at(0)
     python_prefix = `python-config --prefix`.chomp
