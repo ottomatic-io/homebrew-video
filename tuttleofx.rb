@@ -38,21 +38,18 @@ class Tuttleofx < Formula
   def install
     system "cp tools/sconf/macos_homebrew.sconf host.sconf"
 
-    python_version = `python-config --libs`.match('-lpython(\d+\.\d+)').captures.at(0)
-    puts "python_version #{python_version}"
+    python_version = "python" + `python-config --libs`.match('-lpython(\d+\.\d+)').captures.at(0)
+    python_prefix = `python-config --prefix`.chomp
 
-    numpy = Formula["numpy"].prefix
-    incdir_python_numpy="#{numpy}/lib/python#{python_version}/site-packages/numpy/core/include"
-    puts "incdir_python_numpy #{incdir_python_numpy}"
-
-    freetype = Formula["freetype"].prefix
-    incdir_freetype = "#{freetype}/include/freetype2"
-    puts "incdir_freetype #{incdir_freetype}"
+    incdir_python =  "#{python_prefix}/include/#{python_version}"
+    incdir_python_numpy="#{Formula["numpy"].prefix}/lib/#{python_version}/site-packages/numpy/core/include"
+    incdir_freetype = "#{Formula["freetype"].opt_include}/freetype2"
 
     args = %W[
       INSTALLPATH=#{Dir.pwd}/install
       install=1
       -j #{ENV.make_jobs}
+      incdir_python=#{incdir_python}
       incdir_python_numpy=#{incdir_python_numpy}
       incdir_freetype=#{incdir_freetype}
     ]
