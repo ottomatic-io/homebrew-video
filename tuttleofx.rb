@@ -14,7 +14,7 @@ class Tuttleofx < Formula
 
   depends_on :python
   depends_on :x11
-  depends_on "scons" => :build
+  depends_on "cmake" => :build
   depends_on "swig" => :build
   depends_on "boost" => "with-python"
   depends_on "ctl"
@@ -36,27 +36,8 @@ class Tuttleofx < Formula
   depends_on "homebrew/science/openimageio"
 
   def install
-    cp "tools/sconf/macos_homebrew.sconf", "host.sconf"
-
-    python_version = "python" + `python-config --libs`.match('-lpython(\d+\.\d+)').captures.at(0)
-    python_prefix = `python-config --prefix`.chomp
-
-    incdir_python = "#{python_prefix}/include/#{python_version}"
-    incdir_python_numpy = "#{Formula["numpy"].prefix}/lib/#{python_version}/site-packages/numpy/core/include"
-    incdir_freetype = "#{Formula["freetype"].opt_include}/freetype2"
-
-    args = %W[
-      INSTALLPATH=#{Dir.pwd}/install
-      install=1
-      -j #{ENV.make_jobs}
-      incdir_python=#{incdir_python}
-      incdir_python_numpy=#{incdir_python_numpy}
-      incdir_freetype=#{incdir_freetype}
-    ]
-
-    scons *args
-
-    prefix.install Dir["install/*"]
+    system "./configure", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_BUILD_TYPE=RELEASE"
+    system "make", "install"
   end
 
   def caveats
