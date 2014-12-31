@@ -40,15 +40,7 @@ class Tuttleofx < Formula
     system "make", "install"
   end
 
-  def caveats
-    <<-EOS.undent
-      You need to set the path to TuttleOFX plugins by:
-        export OFX_PLUGIN_PATH=#{prefix}/plugin
-    EOS
-  end
-
   def test
-    ENV.prepend_create_path "OFX_PLUGIN_PATH", "#{prefix}/plugin"
     system "sam", "do", "-n"
   end
 end
