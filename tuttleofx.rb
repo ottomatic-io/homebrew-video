@@ -12,7 +12,8 @@ class Tuttleofx < Formula
     version "develop"
   end
 
-  depends_on :python
+  depends_on :python => :recommended
+  depends_on :python3 => :optional
   depends_on :x11
   depends_on "cmake" => :build
   depends_on "swig" => :build
@@ -35,9 +36,28 @@ class Tuttleofx < Formula
   depends_on "homebrew/python/numpy"
   depends_on "homebrew/science/openimageio"
 
+  if build.without?("python3") && build.without?("python")
+    odie "tuttleofx: --with-python3 must be specified when using --without-python"
+  end
+
   def install
-    system "./configure", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_BUILD_TYPE=RELEASE"
-    system "make", "install"
+    Language::Python.each_python(build) do |python, version|
+      py_abspath = `#{python} -c "import sys; print(sys.executable)"`.strip
+      py_prefix = `#{python} -c "from __future__ import print_function; import sys; print(sys.prefix)"`.strip
+      py_include = `#{python} -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`.strip
+
+      mkdir_p "build_py#{version}"
+      cd "build_py#{version}"
+      system "cmake", "..",
+                   "-DCMAKE_INSTALL_PREFIX=#{prefix}",
+                   "-DCMAKE_BUILD_TYPE=RELEASE",
+                   "-DPYTHON_EXECUTABLE=#{py_abspath}",
+                   "-DPYTHON_LIBRARY=#{py_prefix}/lib/libpython#{version}.dylib",
+                   "-DPYTHON_INCLUDE_DIR=#{py_include}"
+
+      system "make", "install"
+      cd ".."
+    end
   end
 
   def test
