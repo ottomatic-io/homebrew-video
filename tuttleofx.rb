@@ -21,7 +21,6 @@ class Tuttleofx < Formula
   depends_on "ctl"
   depends_on "ffmpeg"
   depends_on "fontconfig"
-  depends_on "freeglut"
   depends_on "freetype"
   depends_on "glew"
   depends_on "imagemagick"
@@ -35,6 +34,7 @@ class Tuttleofx < Formula
   depends_on "seexpr"
   depends_on "homebrew/python/numpy"
   depends_on "homebrew/science/openimageio"
+  depends_on "homebrew/x11/freeglut"
 
   if build.without?("python3") && build.without?("python")
     odie "tuttleofx: --with-python3 must be specified when using --without-python"
