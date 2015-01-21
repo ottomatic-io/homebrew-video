@@ -12,9 +12,10 @@ class Tuttleofx < Formula
     version "develop"
   end
 
-  depends_on :python
+  depends_on :python => :recommended
+  depends_on :python3 => :optional
   depends_on :x11
-  depends_on "scons" => :build
+  depends_on "cmake" => :build
   depends_on "swig" => :build
   depends_on "boost" => "with-python"
   depends_on "ctl"
@@ -35,39 +36,31 @@ class Tuttleofx < Formula
   depends_on "homebrew/python/numpy"
   depends_on "homebrew/science/openimageio"
 
-  def install
-    cp "tools/sconf/macos_homebrew.sconf", "host.sconf"
-
-    python_version = "python" + `python-config --libs`.match('-lpython(\d+\.\d+)').captures.at(0)
-    python_prefix = `python-config --prefix`.chomp
-
-    incdir_python = "#{python_prefix}/include/#{python_version}"
-    incdir_python_numpy = "#{Formula["numpy"].prefix}/lib/#{python_version}/site-packages/numpy/core/include"
-    incdir_freetype = "#{Formula["freetype"].opt_include}/freetype2"
-
-    args = %W[
-      INSTALLPATH=#{Dir.pwd}/install
-      install=1
-      -j #{ENV.make_jobs}
-      incdir_python=#{incdir_python}
-      incdir_python_numpy=#{incdir_python_numpy}
-      incdir_freetype=#{incdir_freetype}
-    ]
-
-    scons *args
-
-    prefix.install Dir["install/*"]
+  if build.without?("python3") && build.without?("python")
+    odie "tuttleofx: --with-python3 must be specified when using --without-python"
   end
 
-  def caveats
-    <<-EOS.undent
-      You need to set the path to TuttleOFX plugins by:
-        export OFX_PLUGIN_PATH=#{prefix}/plugin
-    EOS
+  def install
+    Language::Python.each_python(build) do |python, version|
+      py_abspath = `#{python} -c "import sys; print(sys.executable)"`.strip
+      py_prefix = `#{python} -c "from __future__ import print_function; import sys; print(sys.prefix)"`.strip
+      py_include = `#{python} -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`.strip
+
+      mkdir_p "build_py#{version}"
+      cd "build_py#{version}"
+      system "cmake", "..",
+                   "-DCMAKE_INSTALL_PREFIX=#{prefix}",
+                   "-DCMAKE_BUILD_TYPE=RELEASE",
+                   "-DPYTHON_EXECUTABLE=#{py_abspath}",
+                   "-DPYTHON_LIBRARY=#{py_prefix}/lib/libpython#{version}.dylib",
+                   "-DPYTHON_INCLUDE_DIR=#{py_include}"
+
+      system "make", "install"
+      cd ".."
+    end
   end
 
   def test
-    ENV.prepend_create_path "OFX_PLUGIN_PATH", "#{prefix}/plugin"
     system "sam", "do", "-n"
   end
 end
