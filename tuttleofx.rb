@@ -61,7 +61,7 @@ class Tuttleofx < Formula
     end
   end
 
-  def test
+  test do
     system "sam", "do", "-n"
   end
 end
