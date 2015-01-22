@@ -17,7 +17,8 @@ class Tuttleofx < Formula
   depends_on :x11
   depends_on "cmake" => :build
   depends_on "swig" => :build
-  depends_on "boost" => "with-python"
+  depends_on "boost"
+  depends_on "boost-python"
   depends_on "ctl"
   depends_on "ffmpeg"
   depends_on "fontconfig"
