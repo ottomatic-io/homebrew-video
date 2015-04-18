@@ -5,6 +5,11 @@ class Avtranscoder < Formula
   url "https://github.com/avTranscoder/avTranscoder.git", :branch => "master"
   version "master"
 
+  devel do
+    url "https://github.com/avTranscoder/avTranscoder.git", :branch => "develop"
+    version "develop"
+  end
+
   depends_on "cmake" => :build
   depends_on "swig" => :recommended  # python and java bindings
   depends_on "ffmpeg"
