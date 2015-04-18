@@ -2,9 +2,8 @@ require "formula"
 
 class Avtranscoder < Formula
   homepage ""
-  url "https://github.com/mikrosimage/avTranscoder.git", :branch => "release/v0.4.3"
-  version "0.4.3"
-  # Currently Mikros Image fork of the official repository (https://github.com/avTranscoder/avTranscoder).
+  url "https://github.com/avTranscoder/avTranscoder.git", :branch => "master"
+  version "master"
 
   depends_on "cmake" => :build
   depends_on "swig" => :recommended  # python and java bindings
