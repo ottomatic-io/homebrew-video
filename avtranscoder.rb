@@ -1,7 +1,7 @@
 require "formula"
 
 class Avtranscoder < Formula
-  homepage ""
+  homepage "https://github.com/avTranscoder/avTranscoder"
   url "https://github.com/avTranscoder/avTranscoder.git", :branch => "master"
   version "master"
 
