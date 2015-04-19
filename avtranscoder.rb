@@ -11,7 +11,7 @@ class Avtranscoder < Formula
   end
 
   depends_on "cmake" => :build
-  depends_on "swig" => :recommended  # python and java bindings
+  depends_on "swig" => [:build, :recommended]  # python and java bindings
   depends_on "ffmpeg"
   depends_on "freeglut" => :optional  # for avplay app (need XQuartz, https://xquartz.macosforge.org)
 
