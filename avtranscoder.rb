@@ -1,13 +1,17 @@
 require "formula"
 
 class Avtranscoder < Formula
-  homepage ""
-  url "https://github.com/mikrosimage/avTranscoder.git", :branch => "release/v0.4.3"
-  version "0.4.3"
-  # Currently Mikros Image fork of the official repository (https://github.com/avTranscoder/avTranscoder).
+  homepage "https://github.com/avTranscoder/avTranscoder"
+  url "https://github.com/avTranscoder/avTranscoder.git", :branch => "master"
+  version "master"
+
+  devel do
+    url "https://github.com/avTranscoder/avTranscoder.git", :branch => "develop"
+    version "develop"
+  end
 
   depends_on "cmake" => :build
-  depends_on "swig" => :recommended  # python and java bindings
+  depends_on "swig" => [:build, :recommended]  # python and java bindings
   depends_on "ffmpeg"
   depends_on "freeglut" => :optional  # for avplay app (need XQuartz, https://xquartz.macosforge.org)
 
