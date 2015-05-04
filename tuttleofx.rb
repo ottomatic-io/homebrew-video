@@ -2,10 +2,8 @@ require "formula"
 
 class Tuttleofx < Formula
   homepage "http://www.tuttleofx.org"
-  url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
-  # We currently use the develop version, the v0.9 will be the next release officially supporting homebrew.
-  # :tag => "v0.9"
-  version "0.9.0-dev"
+  url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "release/v0.11.0"
+  version "0.11.0"
 
   devel do
     url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
@@ -56,6 +54,7 @@ class Tuttleofx < Formula
                    "-DPYTHON_LIBRARY=#{py_prefix}/lib/libpython#{version}.dylib",
                    "-DPYTHON_INCLUDE_DIR=#{py_include}"
 
+      system "make"
       system "make", "install"
       cd ".."
     end
