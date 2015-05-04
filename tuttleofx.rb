@@ -31,7 +31,7 @@ class Tuttleofx < Formula
   depends_on "openexr"
   depends_on "openjpeg"
   depends_on "seexpr"
-  depends_on "homebrew/python/numpy"
+  depends_on "homebrew/python/numpy" => :recommended
   depends_on "homebrew/science/openimageio"
   depends_on "homebrew/x11/freeglut"
 
@@ -44,6 +44,7 @@ class Tuttleofx < Formula
       py_abspath = `#{python} -c "import sys; print(sys.executable)"`.strip
       py_prefix = `#{python} -c "from __future__ import print_function; import sys; print(sys.prefix)"`.strip
       py_include = `#{python} -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`.strip
+      py_numpy = build.without?("numpy")
 
       mkdir_p "build_py#{version}"
       cd "build_py#{version}"
@@ -52,7 +53,8 @@ class Tuttleofx < Formula
                    "-DCMAKE_BUILD_TYPE=RELEASE",
                    "-DPYTHON_EXECUTABLE=#{py_abspath}",
                    "-DPYTHON_LIBRARY=#{py_prefix}/lib/libpython#{version}.dylib",
-                   "-DPYTHON_INCLUDE_DIR=#{py_include}"
+                   "-DPYTHON_INCLUDE_DIR=#{py_include}",
+                   "-DWITHOUT_NUMPY=#{py_numpy}"
 
       system "make"
       system "make", "install"
