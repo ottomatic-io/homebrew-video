@@ -1,6 +1,6 @@
 require "formula"
 
-class qpsnr < Formula
+class Qpsnr < Formula
   homepage "https://github.com/MarcAntoine-Arnaud/qpsnr"
   url "https://github.com/MarcAntoine-Arnaud/qpsnr.git", :branch => "master"
   version "master"
