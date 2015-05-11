@@ -2,10 +2,8 @@ require "formula"
 
 class Tuttleofx < Formula
   homepage "http://www.tuttleofx.org"
-  url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
-  # We currently use the develop version, the v0.9 will be the next release officially supporting homebrew.
-  # :tag => "v0.9"
-  version "0.9.0-dev"
+  url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "release/v0.11.0"
+  version "0.11.0"
 
   devel do
     url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
@@ -33,7 +31,7 @@ class Tuttleofx < Formula
   depends_on "openexr"
   depends_on "openjpeg"
   depends_on "seexpr"
-  depends_on "homebrew/python/numpy"
+  depends_on "homebrew/python/numpy" => :recommended
   depends_on "homebrew/science/openimageio"
   depends_on "homebrew/x11/freeglut"
 
@@ -46,6 +44,7 @@ class Tuttleofx < Formula
       py_abspath = `#{python} -c "import sys; print(sys.executable)"`.strip
       py_prefix = `#{python} -c "from __future__ import print_function; import sys; print(sys.prefix)"`.strip
       py_include = `#{python} -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`.strip
+      py_numpy = build.without?("numpy")
 
       mkdir_p "build_py#{version}"
       cd "build_py#{version}"
@@ -54,8 +53,10 @@ class Tuttleofx < Formula
                    "-DCMAKE_BUILD_TYPE=RELEASE",
                    "-DPYTHON_EXECUTABLE=#{py_abspath}",
                    "-DPYTHON_LIBRARY=#{py_prefix}/lib/libpython#{version}.dylib",
-                   "-DPYTHON_INCLUDE_DIR=#{py_include}"
+                   "-DPYTHON_INCLUDE_DIR=#{py_include}",
+                   "-DWITHOUT_NUMPY=#{py_numpy}"
 
+      system "make"
       system "make", "install"
       cd ".."
     end
