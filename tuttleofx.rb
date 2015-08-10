@@ -2,8 +2,8 @@ require "formula"
 
 class Tuttleofx < Formula
   homepage "http://www.tuttleofx.org"
-  url "https://github.com/tuttleofx/TuttleOFX.git", :tag => "v0.12.0"
-  version "0.12.0"
+  url "https://github.com/tuttleofx/TuttleOFX.git", :tag => "v0.12.1"
+  version "0.12.1"
 
   devel do
     url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
