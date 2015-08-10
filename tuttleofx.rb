@@ -2,8 +2,8 @@ require "formula"
 
 class Tuttleofx < Formula
   homepage "http://www.tuttleofx.org"
-  url "https://github.com/tuttleofx/TuttleOFX.git", :tag => "v0.11.0"
-  version "0.11.0"
+  url "https://github.com/tuttleofx/TuttleOFX.git", :tag => "v0.12.0"
+  version "0.12.0"
 
   devel do
     url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
@@ -34,6 +34,17 @@ class Tuttleofx < Formula
   depends_on "homebrew/python/numpy" => :recommended
   depends_on "homebrew/science/openimageio"
   depends_on "homebrew/x11/freeglut"
+
+  # for sam tools
+  if build.with?("python")
+    depends_on "clint" => :python
+    depends_on "argcomplete" => :python
+  end
+
+  if build.with?("python3")
+    depends_on "clint" => :python3
+    depends_on "argcomplete" => :python3
+  end
 
   if build.without?("python3") && build.without?("python")
     odie "tuttleofx: --with-python3 must be specified when using --without-python"
