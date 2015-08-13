@@ -57,6 +57,10 @@ class Tuttleofx < Formula
       py_include = `#{python} -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`.strip
       py_numpy = build.without?("numpy")
 
+      # force sync of git submodules
+      # https://github.com/tuttleofx/TuttleOFX/issues/442
+      git submodule sync
+
       mkdir_p "build_py#{version}"
       cd "build_py#{version}"
       system "cmake", "..",
