@@ -2,8 +2,8 @@ require "formula"
 
 class Tuttleofx < Formula
   homepage "http://www.tuttleofx.org"
-  url "https://github.com/tuttleofx/TuttleOFX.git", :tag => "v0.11.0"
-  version "0.11.0"
+  url "https://github.com/tuttleofx/TuttleOFX.git", :tag => "v0.12.1"
+  version "0.12.1"
 
   devel do
     url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
@@ -35,6 +35,17 @@ class Tuttleofx < Formula
   depends_on "homebrew/science/openimageio"
   depends_on "homebrew/x11/freeglut"
 
+  # for sam tools
+  if build.with?("python")
+    depends_on "clint" => :python
+    depends_on "argcomplete" => :python
+  end
+
+  if build.with?("python3")
+    depends_on "clint" => :python3
+    depends_on "argcomplete" => :python3
+  end
+
   if build.without?("python3") && build.without?("python")
     odie "tuttleofx: --with-python3 must be specified when using --without-python"
   end
@@ -45,6 +56,10 @@ class Tuttleofx < Formula
       py_prefix = `#{python} -c "from __future__ import print_function; import sys; print(sys.prefix)"`.strip
       py_include = `#{python} -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`.strip
       py_numpy = build.without?("numpy")
+
+      # force sync of git submodules
+      # https://github.com/tuttleofx/TuttleOFX/issues/442
+      git submodule sync
 
       mkdir_p "build_py#{version}"
       cd "build_py#{version}"
