@@ -9,6 +9,11 @@ class Tuttleofx < Formula
     url "https://github.com/tuttleofx/TuttleOFX.git", :branch => "develop"
     version "develop"
   end
+  
+  bottle do
+    root_url "https://bintray.com/artifact/download/cbenhagen/homebrew-video"
+    sha256 "0f06bab20cee751094bdea2ea46927a8c4f28e17759f995d5dc9187d25da4506" => :yosemite
+  end
 
   depends_on :python => :recommended
   depends_on :python3 => :optional
