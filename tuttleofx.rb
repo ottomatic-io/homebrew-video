@@ -81,4 +81,14 @@ class Tuttleofx < Formula
   test do
     system "sam", "do", "-n"
   end
+
+  def caveats; <<-EOS.undent
+    Before using TuttleOFX plugins, you need to set an environment variable to tell where are the plugins:
+    export OFX_PLUGIN_PATH=/usr/local/Cellar/tuttleofx/#{version}/OFX
+
+    For usage instructions:
+        more #{opt_prefix}/USAGE.md
+    EOS
+  end
+
 end
