@@ -2,12 +2,17 @@ require "formula"
 
 class Avtranscoder < Formula
   homepage "https://github.com/avTranscoder/avTranscoder"
-  url "https://github.com/avTranscoder/avTranscoder.git", :branch => "master"
+  url "https://github.com/avTranscoder/avTranscoder.git", :branch => "support_ffmpeg_3_1"
   version "master"
 
   devel do
     url "https://github.com/avTranscoder/avTranscoder.git", :branch => "develop"
     version "develop"
+  end
+
+  test do
+    url "https://github.com/avTranscoder/avTranscoder.git", :branch => "support_ffmpeg_3_1"
+    version "test"
   end
 
   depends_on "cmake" => :build
@@ -17,6 +22,7 @@ class Avtranscoder < Formula
 
   def install
     system "cmake", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_BUILD_TYPE=RELEASE"
+    system "make"
     system "make", "install"
   end
 end
