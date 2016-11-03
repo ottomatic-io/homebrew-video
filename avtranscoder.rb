@@ -2,8 +2,8 @@ require "formula"
 
 class Avtranscoder < Formula
   homepage "https://github.com/avTranscoder/avTranscoder"
-  url "https://github.com/avTranscoder/avTranscoder.git", :branch => "support_ffmpeg_3_1"
-  version "master"
+  url "https://github.com/avTranscoder/avTranscoder.git", :tag => "v0.10.4"
+  version "v0.10.4"
 
   devel do
     url "https://github.com/avTranscoder/avTranscoder.git", :branch => "develop"
