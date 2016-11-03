@@ -10,11 +10,6 @@ class Avtranscoder < Formula
     version "develop"
   end
 
-  test do
-    url "https://github.com/avTranscoder/avTranscoder.git", :branch => "support_ffmpeg_3_1"
-    version "test"
-  end
-
   depends_on "cmake" => :build
   depends_on "swig" => [:build, :recommended]  # python and java bindings
   depends_on "ffmpeg"
