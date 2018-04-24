@@ -2,8 +2,8 @@ require "formula"
 
 class Avtranscoder < Formula
   homepage "https://github.com/avTranscoder/avTranscoder"
-  url "https://github.com/avTranscoder/avTranscoder.git", :branch => "master"
-  version "master"
+  url "https://github.com/avTranscoder/avTranscoder.git", :tag => "v0.10.4"
+  version "v0.10.4"
 
   devel do
     url "https://github.com/avTranscoder/avTranscoder.git", :branch => "develop"
@@ -17,6 +17,7 @@ class Avtranscoder < Formula
 
   def install
     system "cmake", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_BUILD_TYPE=RELEASE"
+    system "make"
     system "make", "install"
   end
 end
