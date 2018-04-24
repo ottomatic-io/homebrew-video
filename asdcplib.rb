@@ -11,7 +11,7 @@ class Asdcplib < Formula
   end
 
   def install
-    system "./configure", "--prefix=#{prefix}", "--enable-as-02", "--enable-dev-headers"
+    system "./configure", "--prefix=#{prefix}", "--enable-as-02", "--enable-phdr", "--enable-dev-headers", "--with-openssl=/usr/local/opt/openssl"
     system "make", "install"
   end
 end
