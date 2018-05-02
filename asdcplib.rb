@@ -10,6 +10,8 @@ class Asdcplib < Formula
     version "develop"
   end
 
+  depends_on "openssl"
+
   def install
     system "./configure", "--prefix=#{prefix}", "--enable-as-02", "--enable-phdr", "--enable-dev-headers", "--with-openssl=/usr/local/opt/openssl"
     system "make", "install"
