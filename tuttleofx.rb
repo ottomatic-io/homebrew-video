@@ -15,8 +15,7 @@ class Tuttleofx < Formula
     sha256 "0f06bab20cee751094bdea2ea46927a8c4f28e17759f995d5dc9187d25da4506" => :yosemite
   end
 
-  depends_on :python => :recommended
-  depends_on :python3 => :optional
+  depends_on :python
   depends_on :x11
   depends_on "cmake" => :build
   depends_on "swig" => :build
@@ -36,24 +35,13 @@ class Tuttleofx < Formula
   depends_on "openexr"
   depends_on "openjpeg"
   depends_on "seexpr"
-  depends_on "homebrew/python/numpy" => :recommended
-  depends_on "homebrew/science/openimageio"
-  depends_on "homebrew/x11/freeglut"
+  depends_on "numpy" => :recommended
+  depends_on "openimageio"
+  depends_on "freeglut"
 
   # for sam tools
-  if build.with?("python")
-    depends_on "clint" => :python
-    depends_on "argcomplete" => :python
-  end
-
-  if build.with?("python3")
-    depends_on "clint" => :python3
-    depends_on "argcomplete" => :python3
-  end
-
-  if build.without?("python3") && build.without?("python")
-    odie "tuttleofx: --with-python3 must be specified when using --without-python"
-  end
+  depends_on "clint" => :python
+  depends_on "argcomplete" => :python
 
   def install
     Language::Python.each_python(build) do |python, version|
