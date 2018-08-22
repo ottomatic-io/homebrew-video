@@ -15,7 +15,7 @@ class Tuttleofx < Formula
     sha256 "0f06bab20cee751094bdea2ea46927a8c4f28e17759f995d5dc9187d25da4506" => :yosemite
   end
 
-  depends_on :python
+  depends_on "python"
   depends_on :x11
   depends_on "cmake" => :build
   depends_on "swig" => :build
