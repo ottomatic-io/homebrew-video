@@ -16,8 +16,8 @@ class Bmx < Formula
   depends_on "automake" => :build
   depends_on "expat"
   depends_on "uriparser"
-  depends_on "marcantoine-arnaud/video/libmxf"
-  depends_on "marcantoine-arnaud/video/libmxfpp"
+  depends_on "ottomatic-io/video/libmxf"
+  depends_on "ottomatic-io/video/libmxfpp"
 
   def install
     if !build.devel?
