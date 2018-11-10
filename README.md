@@ -1,6 +1,6 @@
 homebrew-video
 ==============
-This repository contains some formulae for [Homebrew](https://github.com/mxcl/homebrew).
+This repository contains some formulae for [Homebrew](https://brew.sh).
 
 
 Installing Homebrew-video Formulae
@@ -15,5 +15,5 @@ brew install https://raw.github.com/ottomatic-io/homebrew-video/master/<formula>
 
 Docs
 ----
-`brew help`, `man brew`, or the Homebrew [wiki][].
+`brew help`, `man brew`, or the Homebrew [docs](https://docs.brew.sh/).
 
