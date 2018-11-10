@@ -4,13 +4,13 @@ This repository contains some formulae for [Homebrew](https://github.com/mxcl/ho
 
 
 Installing Homebrew-video Formulae
---------------------------------
-Just `brew tap OTTOMATIC-IO/video` and then `brew install <formula>`.
+----------------------------------
+Just `brew tap ottomatic-io/video` and then `brew install <formula>`.
 
 You can also install via URL:
 
 ```
-brew install https://raw.github.com/OTTOMATIC-IO/homebrew-video/master/<formula>.rb
+brew install https://raw.github.com/ottomatic-io/homebrew-video/master/<formula>.rb
 ```
 
 Docs
