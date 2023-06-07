@@ -1,19 +1,16 @@
 require "formula"
 
 class Libmxfpp < Formula
-  homepage "http://sourceforge.net/p/bmxlib/home/Home/"
-  url "https://downloads.sourceforge.net/project/bmxlib/bmx-snapshot-20170814/bmx-snapshot-20170814.tar.gz"
-  sha256 "2c86a106a7abf56822b3dbfa9a680ca65a64529e466b80e2bd34ac4805db524f"
+  homepage "https://github.com/bbc/libMXFpp"
+  url "https://github.com/bbc/libMXFpp/archive/refs/tags/v1.1.tar.gz"
+  sha256 "7ca29e8728ce3ed34d0b0ef4384641e8b0973fc7ac973ec6f12d41044d0ea44e"
 
-  depends_on "pkg-config" => :build
-  depends_on "libtool" => :build
+  depends_on "cmake" => :build
   depends_on "libmxf"
 
   def install
-    Dir.chdir "libmxf++"
-    system "./configure", "--disable-dependency-tracking",
-                          "--prefix=#{prefix}"
-    system "make"
-    system "make install"
+    system "cmake", "-S", ".", "-B", "build", "-DLIBMXFPP_BUILD_LIBMXF_LIB=ON", *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 end

@@ -1,33 +1,19 @@
 require "formula"
 
 class Bmx < Formula
-  homepage "http://sourceforge.net/p/bmxlib/home/Home/"
-  url "https://downloads.sourceforge.net/project/bmxlib/bmx-snapshot-20170814/bmx-snapshot-20170814.tar.gz"
-  sha256 "2c86a106a7abf56822b3dbfa9a680ca65a64529e466b80e2bd34ac4805db524f"
+  homepage "https://github.com/bbc/bmx"
+  url "https://github.com/bbc/bmx/releases/download/v1.1/bmx-1.1.tar.gz"
+  sha256 "6d4a32a78af9da64b345bb7ed42375e1d9aa4d89263f3334cc5cfd5173e3b645"
 
-  devel do
-    url "https://github.com/nomalab/bmx.git", :branch => "aes3_flavour"
-    version "develop"
-  end
-
-  depends_on "pkg-config" => :build
-  depends_on "libtool" => :build
-  depends_on "autoconf" => :build
-  depends_on "automake" => :build
+  depends_on "cmake" => :build
   depends_on "expat"
   depends_on "uriparser"
-  depends_on "ottomatic-io/video/libmxf"
-  depends_on "ottomatic-io/video/libmxfpp"
+  depends_on "libmxf"
+  depends_on "libmxfpp"
 
   def install
-    if !build.devel?
-      Dir.chdir "bmx"
-    end
-
-    system "./autogen.sh"
-    system "./configure", "--disable-dependency-tracking",
-                          "--prefix=#{prefix}"
-    system "make"
-    system "make install"
+    system "cmake", "-S", ".", "-B", "build", "-DBMX_BUILD_LIBMXF_LIB=ON", "-DBMX_BUILD_LIBMXFPP_LIB=ON", *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 end
