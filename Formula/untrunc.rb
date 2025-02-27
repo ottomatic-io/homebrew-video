@@ -1,8 +1,8 @@
 class Untrunc < Formula
   desc "Restore a truncated mp4/mov. Improved version of ponchio/untrunc"
   homepage "https://github.com/anthwlock/untrunc"
-  version "v318-e6382ca"
-  url "https://github.com/anthwlock/untrunc.git", revision: "e6382cae8cf37cf6e30fa7a4e751c28f7dfe1c04"
+  version "v367-13cafed"
+  url "https://github.com/anthwlock/untrunc.git", revision: "13cafedf59369db478af537fb909f0d7fd0eb85f"
   license "GPL-2.0-only"
   head "https://github.com/anthwlock/untrunc.git", branch: "master"
 
