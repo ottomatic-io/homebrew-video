@@ -8,7 +8,7 @@ class Untrunc < Formula
 
   depends_on "ca-certificates" => :build
   depends_on "cmake" => :build
-  depends_on "ffmpeg" => :build
+  depends_on "ffmpeg@7" => :build
   depends_on "git" => :build
   depends_on "wget" => :build
   depends_on "xz" => :build
