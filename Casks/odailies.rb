@@ -7,7 +7,7 @@ cask "odailies" do
   desc "Smart and easy to use solution to preview and analyze video footage anywhere"
   homepage "https://ottomatic.io/o/dailies"
 
-  app "oDAILIES.app"
+  app "oⳆDAILIESⳆMANAGER.app"
 
   livecheck do
     url "https://storage.googleapis.com/odailies/odailies-macos.xml"
