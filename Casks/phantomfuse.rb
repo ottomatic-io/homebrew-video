@@ -11,7 +11,7 @@ cask "phantomfuse" do
 
   auto_updates true
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :catalina
 
   zap trash: [
     "~/Library/Application Support/PHANTOMfuse",
